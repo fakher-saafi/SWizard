@@ -1,0 +1,152 @@
+<div class="row justify-content-center">    
+    <div class="col-9">
+        <div *ngIf="role">
+            <h2><span>Role</span> {{role.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-details-tab" data-toggle="pill" href="#pills-details" role="tab" aria-controls="pills-profile" aria-selected="true">Access List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-access-tab" data-toggle="pill" href="#pills-access" role="tab" aria-controls="pills-home" aria-selected="false">Details</a>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="pills-tabContent" style="margin-bottom: 40px;">
+
+
+
+                <div class="tab-pane fade" id="pills-access" role="tabpanel" aria-labelledby="pills-details-tab">
+                    <dl class="row-md jh-entity-details">
+                        <dt><span>Role Name</span></dt>
+                        <dd>
+                            <span>{{role.roleName}}</span>
+                        </dd>
+                        <dt><span>Description</span></dt>
+                        <dd>
+                            <span>{{role.description}}</span>
+                        </dd>
+                        <dt><span>Active</span></dt>
+                        <dd>
+                            <span>{{role.active}}</span>
+                        </dd>
+                        <dt><span>User</span></dt>
+                        <dd>
+                            {{role.user?.id}}
+                        </dd>
+                    </dl>
+                </div>
+
+
+                <div class="tab-pane fade  show active" id="pills-details" role="tabpanel" aria-labelledby="pills-access-tab">
+                    <div class="tab-content" id="myTabContent">
+
+                        <div class="tab-pane fade show active" id="pills-accessList" role="tabpanel" aria-labelledby="home-tab">
+                            <table class="table" style="margin: 50px 50px 0px 50px;" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Webservice</th>
+                                        <th scope="col">Table Name</th>
+                                        <th scope="col">Access Type</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let acc of accesses ;trackBy: trackId">
+                                        <td>{{acc.webservice.webserviceName}}</td>
+                                        <td>{{acc.tableName}}</td>
+                                        <td>{{acc.accessType}}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                [routerLink]="['/access', acc.id, 'view' ]"
+                                                class="btn btn-info btn-sm">
+                                                <fa-icon [icon]="'eye'"></fa-icon>
+                                                <span class="d-none d-md-inline">View</span>
+                                            </button>
+                                            <button type="submit"
+                                            [routerLink]="['/access', acc.id, 'edit']"
+                                            class="btn btn-primary btn-sm">
+                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                            <span class="d-none d-md-inline">Edit</span>
+                                        </button>
+                                        <button type="submit"
+                                        data-toggle="modal" (click)="deleteAccess(acc)"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                        <fa-icon [icon]="'times'"></fa-icon>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </button>
+                </div>
+            </td>
+        </tr>
+        <tr *ngIf="plus">
+            <td> <div class="form-group" required="">
+                <select class="form-control" id="field_webservice" name="webservice" [(ngModel)]="access.webservice" (click)="gettables(access.webservice.id)">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="webserviceOption.id === access.webservice?.id ? access.webservice : webserviceOption" *ngFor="let webserviceOption of webservices; trackBy: trackWebserviceById">{{webserviceOption.webserviceName}}</option>
+                </select>
+            </div></td>
+            <td><div class="form-group" *ngIf="access.webservice!==null">
+
+                <select class="form-control" id="field_tableName" name="tableName" [(ngModel)]="access.tableName">
+                    <option [ngValue]="table" *ngFor="let table of tables">{{table}}</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <select class="form-control" name="accessType" [(ngModel)]="access.accessType" id="field_accessType" >
+                    <option value="GET">{{'srvwizApp.AccessType.GET' | translate}}</option>
+                    <option value="POST">{{'srvwizApp.AccessType.POST' | translate}}</option>
+                    <option value="PUT">{{'srvwizApp.AccessType.PUT' | translate}}</option>
+                    <option value="DELETE">{{'srvwizApp.AccessType.DELETE' | translate}}</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="btn-group flex-btn-group-container">
+                <button (click)="addAccess()" class="btn btn-success btn-sm">
+                    <fa-icon [icon]="'save'"></fa-icon>
+                    <span class="d-none d-md-inline">Save</span>
+                </button>
+            </div>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<!-- <fa-icon [icon]="'plus-square'"></fa-icon>-->
+<a *ngIf="!plus" (click)='onClickPlus()' style="text-decoration: none; cursor:pointer;">
+    <fa-icon [icon]="'plus'" [size]="'lg'" style="color: #32cd32;"></fa-icon>&nbsp;<span></span>
+</a>
+<a *ngIf="plus" (click)='onClickPlus()' style="text-decoration: none; cursor:pointer;">
+    <fa-icon [icon]="'times'" [size]="'lg'" style="color: #ff2800;"></fa-icon>&nbsp;<span></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<button type="submit"
+(click)="previousState()"
+class="btn btn-info">
+<fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+</button>
+
+<button type="button"
+[routerLink]="['/role', role.id, 'edit']"
+class="btn btn-primary">
+<fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+</button>
+
+
+
+
+</div>
+</div>
+</div>
+
+

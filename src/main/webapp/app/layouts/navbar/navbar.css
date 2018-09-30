@@ -1,0 +1,92 @@
+/* ==========================================================================
+Navbar
+========================================================================== */
+.navbar-version {
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+    color: #ccc;
+}
+
+.navbar {
+    background-color: #353d47;
+    font-family: Roboto, sans-serif;
+    padding: 0.2em 1em;
+}
+
+.navbar .profile-image {
+    margin: -10px 0px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.navbar .dropdown-item.active,
+.navbar .dropdown-item.active:focus,
+.navbar .dropdown-item.active:hover {
+    background-color: #353d47;
+}
+
+.navbar .dropdown-toggle::after {
+    margin-left: 0.15em;
+}
+
+.navbar ul.navbar-nav {
+    padding: 0.5em;
+}
+
+.navbar .navbar-nav .nav-item {
+    margin-left: 1.5rem;
+}
+
+.navbar a.nav-link {
+    font-weight: 400;
+}
+
+.navbar .navbar-toggler {
+    color: #ccc;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.navbar .navbar-toggler:hover {
+    color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .logo-container {
+        width: 100%;
+    }
+}
+
+.navbar-title {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: Roboto, sans-serif;
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.navbar-brand.logo {
+    padding: 5px 15px;
+}
+
+.logo .logo-img {
+    height: 45px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.logo-img {
+    height: 100%;
+    background: url('../../../content/images/lyance-logo.png') no-repeat center center;
+    background-size: contain;
+    width: 100%;
+}

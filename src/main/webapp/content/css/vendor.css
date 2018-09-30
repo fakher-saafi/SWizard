@@ -1,0 +1,3 @@
+/* after changing this file run 'yarn run webpack:build' */
+@import '../../content/assets/dist/css/AdminLTE.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
