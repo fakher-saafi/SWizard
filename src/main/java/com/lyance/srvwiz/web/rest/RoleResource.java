@@ -8,7 +8,7 @@ import com.lyance.srvwiz.repository.RoleRepository;
 import com.lyance.srvwiz.service.UserService;
 import com.lyance.srvwiz.web.rest.errors.BadRequestAlertException;
 import com.lyance.srvwiz.web.rest.util.HeaderUtil;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+//import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
